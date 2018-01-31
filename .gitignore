@@ -6,3 +6,6 @@
 /DevCanTest/DevCanTest/bin
 /DevCanTest/DevCanTest/obj/Debug
 /DevCanTest/packages
+
+# Microsoft Azure ApplicationInsights config file
+ApplicationInsights.config
