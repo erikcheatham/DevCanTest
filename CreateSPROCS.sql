@@ -1,38 +1,35 @@
-﻿CREATE PROCEDURE [dbo].[getOrderSearchbyDatesAndCustName]
-	@OrderDate DATE,
-	@DueDate DATE,
-	@ShipDate DATE,
-	@CustID INT,
-	@CustName NVARCHAR(MAX) OUT,
-	@AccountNumber NVARCHAR(MAX) OUT,
-	@ShipToAddress NVARCHAR(MAX) OUT,
-	@ShipMethod NVARCHAR(MAX) OUT,
-	@SubTotal MONEY OUT,
-	@Tax MONEY OUT,
-	@Freight MONEY OUT,
-	@Total MONEY OUT
+﻿CREATE PROCEDURE [dbo].[getOrderSearchbyDatesOrCustName]
+	@OrderDate DATE = null,
+	@DueDate DATE = null,
+	@ShipDate DATE = null,
+	@CustID INT = null
 AS
 BEGIN
+	SET ANSI_NULLS ON
+	SET QUOTED_IDENTIFIER ON
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
 	SELECT 
-	@CustName = CASE 
+CASE 
 WHEN p.MiddleName IS NULL THEN (p.FirstName + ' ' + p.LastName)
 WHEN p.MiddleName IS NOT NULL THEN (p.FirstName + ' ' + p.MiddleName + ' ' + p.LastName) 
-END,
-	@AccountNumber = soh.AccountNumber,
+END AS CustomerName,
+	soh.AccountNumber,
 	--sc.CustomerID,
 	--sc.PersonID,
 	--soh.OrderDate,
 	--soh.DueDate,
 	--soh.ShipDate,
-	@ShipToAddress = CASE
+	CASE
 WHEN a.AddressLine2 IS NULL THEN (a.AddressLine1 + ' ' + a.City + ' ' + sp.StateProvinceCode + ' ' + a.PostalCode)
 ELSE (a.AddressLine1 + ' ' + a.AddressLine2 + ' ' + a.City + ' ' + sp.StateProvinceCode + ' ' + a.PostalCode)
-END,
-	@ShipMethod = psm.Name,
-	@SubTotal = soh.SubTotal,
-	@Tax = soh.TaxAmt,
-	@Freight = soh.Freight,
-	@Total = soh.TotalDue
+END AS ShipToAddress,
+	psm.Name,
+	soh.SubTotal,
+	soh.TaxAmt,
+	soh.Freight,
+	soh.TotalDue
 	FROM Sales.SalesOrderDetail AS sod
 	JOIN Sales.SalesOrderHeader AS soh
 	ON soh.SalesOrderID = sod.SalesOrderID
@@ -46,8 +43,15 @@ END,
 	ON sp.StateProvinceID = a.StateProvinceID
 	LEFT JOIN Purchasing.ShipMethod AS psm
 	ON psm.ShipMethodID = soh.ShipMethodID
+	WHERE sc.CustomerID = @CustID 
+	OR soh.OrderDate = @OrderDate
+	OR soh.DueDate = @DueDate
+	OR soh.ShipDate = @ShipDate
+
 END
+
 GO
+
 CREATE PROCEDURE [dbo].[getOrderDetailbySalesID]
 	@SalesID INT,
 	@ProductName NVARCHAR(MAX) OUT,

@@ -133,6 +133,7 @@ SELECT
 	LEFT JOIN Purchasing.ShipMethod AS psm
 	ON psm.ShipMethodID = soh.ShipMethodID
 
+	USE AdventureWorks2016
 --Concatenation
 SELECT
 CASE 
@@ -169,4 +170,7 @@ END,
 	ON sp.StateProvinceID = a.StateProvinceID
 	LEFT JOIN Purchasing.ShipMethod AS psm
 	ON psm.ShipMethodID = soh.ShipMethodID
-
+	WHERE soh.CustomerID = '29825' 
+	OR soh.OrderDate = null
+	OR soh.DueDate = null
+	OR soh.ShipDate = null
