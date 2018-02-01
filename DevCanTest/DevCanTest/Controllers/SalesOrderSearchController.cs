@@ -18,12 +18,10 @@ namespace DevCanTest.Controllers
         public HttpResponseMessage OrderSearch()
         {
             OrderSearches os = new OrderSearches();
-
             //DataTable dt = os.GetOrderSearches<OrderSearches>();
 
             //Below Much Simpler Ugh
-            string json = os.GetOrderSearches();
-            
+            string json = os.GetOrderSearches();            
             //return json;
 
             //Make proper JSON

@@ -45,7 +45,7 @@ namespace DevCanTest.Models
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     //Finally Found That reader.Read() method is the culprit 
-                    //For not returning the select rows from the sproc
+                    //For not returning the select rows information from the sproc
                     while (reader.Read())
                     {
                         #region First Attempt
@@ -92,6 +92,9 @@ namespace DevCanTest.Models
                 myConnection.Open();
                 SqlCommand command = new SqlCommand("dbo.getOrderSearchbyDatesOrCustName", myConnection);
                 command.CommandType = CommandType.StoredProcedure;
+                //Test Command
+                //command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = 29825;
+
                 //if (null != String.Empty)
                 //    command.Parameters.AddWithValue("@OrderDate", SqlDbType.Date).Value = null;
                 //if (null != String.Empty)

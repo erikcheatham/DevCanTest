@@ -1,5 +1,5 @@
 ﻿@{
-//ViewBag.Title = "Home Page";
+    //ViewBag.Title = "Home Page";
     <title ng-bind="AngularTest"></title>
 }
 
@@ -7,6 +7,13 @@
 
     <input type="text" ng-model="AngularTest" />
     <h1>{{MyAngular}}</h1>
+    @*<form name="form" ng-submit="submitForm()">*@
+    <div ng-controller="OrderSearch">
+        @*<button class="btn-group-lg" ng-click="getData()">Fire API Call</button>*@
+        <button class="btn-group-lg" ng-click="callAPI()">Fire API Call</button>
+        <p>{{MyAPIReturn}}</p>
+    </div>
+    @*</form>*@
 </div>
 
 <div class="row">
