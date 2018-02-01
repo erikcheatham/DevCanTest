@@ -19,23 +19,14 @@
 //    }
 //}
 
-var orderSearchService = function ($http) {
+var orderSearchAutoComplete = function ($http, text) {
     delete $http.defaults.headers.common['X-Requested-With'];
     this.getData = function () {
         // $http() returns a $promise that we can add handlers with .then()
         return $http({
-            method: "GET",
-            url: "http://localhost:64648/api/SalesOrderSearch"
-            //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}        
-        });
-    }
-
-    this.postData = function (text) {
-        // $http() returns a $promise that we can add handlers with .then()
-        return $http({
             method: "POST",
             url: "http://localhost:64648/api/OrderSearchAutoComplete",
-            data: { 'request': text }
+            data: text
             //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}        
         });
     }

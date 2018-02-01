@@ -18,7 +18,7 @@ var OrderSearchAdvanced = function ($scope, orderSearchService) {
     //});
     $scope.callAPIAutoComplete = function (text) {
         if (text.length >= 3)
-            orderSearchAutocomplete.getData().then(function (response) {
+            orderSearchService.postData(text).then(function (response) {
                 $scope.AutoComplete = response;
             });
     }

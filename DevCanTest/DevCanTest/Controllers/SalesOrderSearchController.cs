@@ -1,4 +1,6 @@
 ﻿using DevCanTest.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +23,7 @@ namespace DevCanTest.Controllers
             //DataTable dt = os.GetOrderSearches<OrderSearches>();
 
             //Below Much Simpler Ugh
-            string json = os.GetOrderSearches();            
+            string json = os.GetOrderSearches();
             //return json;
 
             //Make proper JSON
@@ -53,15 +55,25 @@ namespace DevCanTest.Controllers
 
         // GET: api/SalesOrderSearch
         [HttpPost]
-        public HttpResponseMessage OrderSearchAutoComplete([FromBody]object request)
+        [Route("~/api/OrderSearchAutoComplete")]
+        public HttpResponseMessage OrderSearchAutoComplete(AutoComplete request)
         {
-            OrderSearches os = new OrderSearches();
-            string json = os.GetOrderSearchesAutoComplete(request.ToString());
+            //if (request != null)
+            //{
+                OrderSearches os = new OrderSearches();
+                string json = os.GetOrderSearchesAutoComplete(request.request);
 
-            //Make proper JSON
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-            return response;
+                //Make proper JSON
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                return response;
+            //}
+            //else
+            //{
+            //    var response = Request.CreateResponse(HttpStatusCode.UnsupportedMediaType);
+            //    //response.Content = new StringContent("", System.Text.Encoding.UTF8, "application/json");
+            //    return response;
+            //}
         }
 
         // GET: api/SalesOrderSearch

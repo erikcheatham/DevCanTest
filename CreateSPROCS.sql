@@ -6,7 +6,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[getOrderSearchAutoComplete]
-	@text DATE
+	@text nvarchar(MAX)
 AS
 BEGIN
 	SELECT TOP 10
@@ -18,9 +18,9 @@ END AS CustomerName
 	FROM Sales.Customer AS sc
 	JOIN Person.Person AS p
 	ON p.BusinessEntityID = sc.PersonID	
-	WHERE p.LastName like @text 
-	OR p.FirstName like @text
-	OR p.MiddleName like @text
+	WHERE p.LastName like '%' + @text + '%'
+	OR p.FirstName like '%' + @text + '%'
+	OR p.MiddleName like '%' + @text + '%'
 
 END
 GO
