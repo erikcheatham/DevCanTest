@@ -29,9 +29,64 @@ namespace DevCanTest.Models
             return (IEnumerator)this;
         }
 
-        public string GetOrderSearches()
+        #region OverComplicated
+        public DataTable GetOrderSearches<T>()
         {
             //OrderSearches os = new OrderSearches();
+            using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AdventureConnectionString"].ConnectionString))
+            {
+                myConnection.Open();
+                SqlCommand command = new SqlCommand("dbo.getOrderSearchbyDatesOrCustName", myConnection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                List<T> list = new List<T>();
+                DataTable dataTable = new DataTable();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    //Finally Found That reader.Read() method is the culprit 
+                    //For not returning the select rows from the sproc
+                    while (reader.Read())
+                    {
+                        #region First Attempt
+                        Type type = typeof(T);
+                        var properties = type.GetProperties();
+
+                        foreach (PropertyInfo info in properties)
+                        {
+                            dataTable.Columns.Add(new DataColumn(info.Name, Nullable.GetUnderlyingType(info.PropertyType) ?? info.PropertyType));
+                        }
+
+                        foreach (T entity in list)
+                        {
+                            object[] values = new object[properties.Length];
+                            for (int i = 0; i < properties.Length; i++)
+                            {
+                                values[i] = reader[i];
+                            }
+
+                            dataTable.Rows.Add(values);
+                        }
+                        #endregion
+                        
+                        #region Second Attempts
+
+                        #region Collections Return With Rows But Empty Of Properties And Values - Why!?!?!
+                        list = DataReader.DataReaderMapToList<T>(reader);
+
+                        DataReader.DataReaderMapToList<T>(reader, ref dataTable);
+                        #endregion
+
+                        #endregion
+                    }
+                    return dataTable;
+                }
+            }
+        }
+        #endregion
+
+        public string GetOrderSearches()
+        {
             using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AdventureConnectionString"].ConnectionString))
             {
                 myConnection.Open();
@@ -44,57 +99,19 @@ namespace DevCanTest.Models
                 //if (null != String.Empty)
                 //    command.Parameters.AddWithValue("@ShipDate", SqlDbType.Date).Value = null;
                 //if (null != String.Empty)
-                    command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = 29825;
+                command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = 29825;
 
-                //List<OrderSearches> list = new List<OrderSearches>();
                 DataTable dataTable = new DataTable();
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
+                    //All That Work Above & This Is What It Was!!!!
                     dataTable.Load(reader);
-                    #region GiantWaste
-                    //while (reader.Read())
-                    //{
-                    //Type type = typeof(T);
-                    //var properties = type.GetProperties();
-
-                    //foreach (PropertyInfo info in properties)
-                    //{
-                    //    dataTable.Columns.Add(new DataColumn(info.Name, Nullable.GetUnderlyingType(info.PropertyType) ?? info.PropertyType));
-                    //}
-
-                    //list = DataReader.DataReaderMapToList<OrderSearches>(reader);
-
-
-                    //obj = Activator.CreateInstance<T>();
-                    //foreach (PropertyInfo prop in list.GetType().GetProperties())
-                    //{
-                    //if (!object.Equals(dr[prop.Name], DBNull.Value))
-                    //{
-                    //    prop.SetValue(obj, dr[prop.Name], null);
-                    //}
-                    //}
-                    //list.Add(obj);
-
-                    //foreach (T entity in list)
-                    //{
-                    //    object[] values = new object[properties.Length];
-                    //    for (int i = 0; i < properties.Length; i++)
-                    //    {
-                    //        values[i] = reader[i];
-                    //    }
-
-                    //    dataTable.Rows.Add(values);
-                    //}
-                    //}
-                    #endregion
                 }
                 myConnection.Close();
                 string JSONString = string.Empty;
                 JSONString = JsonConvert.SerializeObject(dataTable);
                 return JSONString;
-
-                //return dataTable;
             }
         }
     }

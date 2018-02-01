@@ -18,14 +18,20 @@ namespace DevCanTest.Controllers
         public HttpResponseMessage OrderSearch()
         {
             OrderSearches os = new OrderSearches();
+
+            //DataTable dt = os.GetOrderSearches<OrderSearches>();
+
+            //Below Much Simpler Ugh
             string json = os.GetOrderSearches();
+            
             //return json;
 
+            //Make proper JSON
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             return response;
 
-
+            #region Not self calling
             //string _apiUrl = String.Format("...");
             //string _baseAddress = "...";
 
@@ -44,6 +50,7 @@ namespace DevCanTest.Controllers
             //    }
             //}
             //return NotFound();
+            #endregion
         }
 
         // GET: api/SalesOrderSearch
