@@ -117,5 +117,29 @@ namespace DevCanTest.Models
                 return JSONString;
             }
         }
+
+        public string GetOrderSearchesAutoComplete(string text)
+        {
+            if (!string.IsNullOrEmpty(text.Trim()))
+                using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AdventureConnectionString"].ConnectionString))
+                {
+                    myConnection.Open();
+                    SqlCommand command = new SqlCommand("dbo.getOrderSearchAutoComplete", myConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@text", SqlDbType.NVarChar).Value = text;
+                    DataTable dataTable = new DataTable();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                    myConnection.Close();
+                    string JSONString = string.Empty;
+                    JSONString = JsonConvert.SerializeObject(dataTable);
+                    return JSONString;
+                }
+            else
+                return "";
+        }
     }
 }

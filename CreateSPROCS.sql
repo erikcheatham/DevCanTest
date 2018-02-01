@@ -1,15 +1,43 @@
-﻿CREATE PROCEDURE [dbo].[getOrderSearchbyDatesOrCustName]
+﻿USE [AdventureWorks2016]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[getOrderSearchAutoComplete]
+	@text DATE
+AS
+BEGIN
+	SELECT TOP 10
+	sc.CustomerID AS CustID,
+CASE 
+WHEN p.MiddleName IS NULL THEN (p.LastName + ', ' + p.LastName)
+WHEN p.MiddleName IS NOT NULL THEN (p.LastName + ', ' + p.FirstName + ' ' + p.MiddleName) 
+END AS CustomerName
+	FROM Sales.Customer AS sc
+	JOIN Person.Person AS p
+	ON p.BusinessEntityID = sc.PersonID	
+	WHERE p.LastName like @text 
+	OR p.FirstName like @text
+	OR p.MiddleName like @text
+
+END
+GO
+
+USE [AdventureWorks2016]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[getOrderSearchbyDatesOrCustName]
 	@OrderDate DATE = null,
 	@DueDate DATE = null,
 	@ShipDate DATE = null,
 	@CustID INT = null
 AS
 BEGIN
-	SET ANSI_NULLS ON
-	SET QUOTED_IDENTIFIER ON
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
 	SELECT 
 CASE 
 WHEN p.MiddleName IS NULL THEN (p.FirstName + ' ' + p.LastName)
@@ -47,11 +75,15 @@ END AS ShipToAddress,
 	OR soh.OrderDate = @OrderDate
 	OR soh.DueDate = @DueDate
 	OR soh.ShipDate = @ShipDate
-
 END
-
 GO
 
+USE [AdventureWorks2016]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE PROCEDURE [dbo].[getOrderDetailbySalesID]
 	@SalesID INT,
 	@ProductName NVARCHAR(MAX) OUT,
@@ -75,3 +107,4 @@ BEGIN
 	ON p.ProductID = s.ProductID
 	WHERE s.SalesOrderID = @SalesID
 END
+GO

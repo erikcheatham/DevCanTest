@@ -53,6 +53,19 @@ namespace DevCanTest.Controllers
 
         // GET: api/SalesOrderSearch
         [HttpPost]
+        public HttpResponseMessage OrderSearchAutoComplete([FromBody]object request)
+        {
+            OrderSearches os = new OrderSearches();
+            string json = os.GetOrderSearchesAutoComplete(request.ToString());
+
+            //Make proper JSON
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            return response;
+        }
+
+        // GET: api/SalesOrderSearch
+        [HttpPost]
         public async Task<IHttpActionResult> OrderSearch([FromBody]object request)
         {
             string _apiUrl = String.Format("...");

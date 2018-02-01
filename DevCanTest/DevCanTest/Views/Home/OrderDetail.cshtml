@@ -4,8 +4,11 @@
 
 <div class="jumbotron marble">
     <div ng-controller="OrderSearch">
-        <div class="nav">
-            <button class="btn-group-lg" ng-click="callAPI()">Fire API Call</button>
+        <div class="nav" >
+            @*<li ng-repeat="">
+
+            </li>*@
+            <button class="btn-group-sm" ng-model="callAPI()" ng-click="callAPI()">Fire API Call</button>
         </div>
         <div>
             <p>{{MyAPIReturn}}</p>

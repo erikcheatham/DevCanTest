@@ -3,8 +3,25 @@
 }
 
 <div class="jumbotron marble">
-    <div ng-controller="OrderSearch">
-        <button class="btn-group-lg" ng-click="callAPI()">Fire API Call</button>
-        <p>{{MyAPIReturn}}</p>
+    <div ng-controller="OrderSearchAdvanced">
+        <div>
+            <p class="col-sm-12 text-left">Enter Customer Name: <input ng-model="text" type="text" ng-keyup="callAPIAutoComplete(text)"/></p>
+            <br />
+        </div>
+        <div>
+            <p class="col-sm-4 text-center">Shipping Date: <input type="text" ng-init="datepickerShip" id="datepickerShip"></p>
+            <p class="col-sm-4 text-center">Order Date: <input type="text" ng-init="datepickerOrder" id="datepickerOrder"></p>
+            <p class="col-sm-4 text-center">Due Date: <input type="text" ng-init="datepickerDue" id="datepickerDue"></p>
+        </div>
+        <div>
+            <br />
+            <br />
+            <br />
+            <button class="btn-group-lg btn-block" ng-click="callAPI()">Fire API Call</button>
+            <br />
+        </div>
+        <div class="col-md-12">
+            <p class="text-center">{{MyAPIReturn}}</p>
+        </div>
     </div>
 </div>
