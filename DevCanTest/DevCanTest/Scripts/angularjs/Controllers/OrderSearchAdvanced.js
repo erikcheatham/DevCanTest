@@ -27,9 +27,9 @@ var OrderSearchAdvanced = function ($scope, orderSearchService) {
         //$scope.
     }
 
-    $scope.datepickerShip = function () { $("#datepickerShip").datepicker(); };
-    $scope.datepickerOrder = function () { $("#datepickerOrder").datepicker(); };
-    $scope.datepickerDue = function () { $("#datepickerDue").datepicker(); };
+    $(function () { $("#datepickerShip").datepicker(); });
+    $(function () { $("#datepickerOrder").datepicker(); });
+    $(function () { $("#datepickerDue").datepicker(); });
 }
 
 OrderSearchAdvanced.$inject = ['$scope', 'orderSearchService'];
