@@ -3,37 +3,32 @@
     <title ng-bind="AngularTest"></title>
 }
 
-<div class="jumbotron">
-
-    <input type="text" ng-model="AngularTest" />
-    <h1>{{MyAngular}}</h1>
-    @*<form name="form" ng-submit="submitForm()">*@
-    <div ng-controller="OrderSearch">
-        @*<button class="btn-group-lg" ng-click="getData()">Fire API Call</button>*@
-        <button class="btn-group-lg" ng-click="callAPI()">Fire API Call</button>
-        <p>{{MyAPIReturn}}</p>
+    <div class="jumbotron marble">
+        @*<input type="text" placeholder="Change Page Title!" wa ng-model="AngularTest" />*@
+        <h2 class="col-md-12 text-center">{{MyAngular}}</h2>
+        <div ng-controller="OrderSearch">
+            <div>
+                @*<form name="form" ng-submit="submitForm()">*@
+                @*<button class="btn-group-lg" ng-click="getData()">Fire API Call</button>*@
+                <button class="btn-group-lg btn-info btn-block" ng-click="callAPI()">See Some JSON!</button>
+            </div>
+            <br />
+            <label class="text-left">{{MyAPIReturn}}</label>
+        </div>
+        @*</form>*@
     </div>
-    @*</form>*@
-</div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <form action="@Url.Action("OrderSearch","Home")">
+            <h2 class="text-center">Order Searching</h2>
+            <button class="btn btn-group-lg btn-primary btn-block">Search</button>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <form action="@Url.Action("OrderDetail","Home")">
+            <h2 class="text-center">Order Details</h2>
+            <button class="btn btn-group-lg btn-primary btn-block">Details</button>
+        </form>
     </div>
 </div>

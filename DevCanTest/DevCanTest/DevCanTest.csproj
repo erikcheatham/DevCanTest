@@ -176,8 +176,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Controllers\OrderSearch.js" />
-    <Content Include="Scripts\Controllers\AngularTest.js" />
+    <Content Include="Scripts\angularjs\Controllers\Navigate.js" />
+    <Content Include="Scripts\angularjs\Controllers\OrderSearch.js" />
+    <Content Include="Scripts\angularjs\Controllers\AngularTest.js" />
     <Content Include="Scripts\DevCanTest.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -189,7 +190,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\Services\OrderSearchService.js" />
+    <Content Include="Scripts\angularjs\Services\OrderSearchService.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -204,6 +205,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\OrderDetail.cshtml" />
+    <Content Include="Views\Home\OrderSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

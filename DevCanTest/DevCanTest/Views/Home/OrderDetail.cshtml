@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Order Detail";
+}
+
+<div class="jumbotron marble">
+    <div ng-controller="OrderSearch">
+        <div class="nav">
+            <button class="btn-group-lg" ng-click="callAPI()">Fire API Call</button>
+        </div>
+        <div>
+            <p>{{MyAPIReturn}}</p>
+        </div>
+    </div>
+</div>

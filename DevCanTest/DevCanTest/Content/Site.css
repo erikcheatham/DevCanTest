@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.cornflowerBlue {
+    background-color: #FBECBA;
+    border-color: black;
+    /*color: white;*/
+}
+
+.marble {
+    border-radius: 111px 110px 52px 52px;
+    border: 0px solid rgb(0, 0, 0);
+    background-image: url(http://api.thumbr.it/whitenoise-361x370.png?background=4ea6caff&noise=FBECBA&density=89&opacity=72);
+}

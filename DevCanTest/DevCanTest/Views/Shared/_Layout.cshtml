@@ -8,8 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-app="DevCanTest" ng-controller="AngularTest">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="marble" ng-app="DevCanTest" ng-controller="AngularTest">
+    <div class="navbar cornflowerBlue navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,13 +17,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Angles", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("OrderSearch", "OrderSearch", "Home")</li>
+                    <li>@Html.ActionLink("OrderDetail", "OrderDetail", "Home")</li>
+                </ul>
+            </div>
+            <div class="navbar-left collapse">
+                <ul class="nav navbar-nav ">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("OrderSearch", "OrderSearch", "Home")</li>
+                    <li>@Html.ActionLink("OrderDetail", "OrderDetail", "Home")</li>
                 </ul>
             </div>
 
@@ -33,15 +40,16 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My AngularJS & WebAPI App</p>
         </footer>
     </div>
     @*<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>*@
     @Scripts.Render("~/bundles/angular")
     @* Testing Angular Without Restart *@
-    <script src="~/Scripts/Controllers/AngularTest.js"></script>
-    <script src="~/Scripts/Controllers/OrderSearch.js"></script>
-    <script src="~/Scripts/Services/OrderSearchService.js"></script>
+    <script src="~/Scripts/angularjs/Controllers/AngularTest.js"></script>
+    <script src="~/Scripts/angularjs/Controllers/OrderSearch.js"></script>
+    <script src="~/Scripts/angularjs/Controllers/Navigate.js"></script>
+    <script src="~/Scripts/angularjs/Services/OrderSearchService.js"></script>
     <script src="~/Scripts/DevCanTest.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -1,4 +1,4 @@
 ﻿var AngularTest = function ($scope) {
-    $scope.MyAngular = 'Hello AngularJS!';
+    $scope.MyAngular = 'AngularJS & WebAPI!';
 }
 AngularTest.$inject = ['$scope'];
