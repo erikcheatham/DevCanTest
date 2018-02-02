@@ -197,7 +197,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     function selectedItemChange(item) {
         //$log.getInstance('app').info('Hello World');
         //$scope.custID = null;
-        if (!isNAN(item.custID)) {
+        if (item.CustID != undefined) {
             $scope.custID = item.CustID;
         }
         $log.info('Item changed to ' + JSON.stringify(item));
