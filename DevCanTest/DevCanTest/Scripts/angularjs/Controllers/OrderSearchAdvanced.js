@@ -1,9 +1,9 @@
 ﻿//angular
 //    .module('DevCanTest')
 
-/**
-OrderSearch Controller
-**/
+///**
+//OrderSearch Controller
+//**/
 
 //.controller('OrderSearch', function ($scope, orderSearchService) {
 var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchService) {
@@ -72,7 +72,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
         $scope.gridOptions.columnDefs.push({
             field: 'TotalDue'
         });
-        
+
         //$scope.gridOptions.data = dataTest;
         //$scope.gridApi.grid.refresh();
 
@@ -171,17 +171,17 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     // Internal methods
     // ******************************
 
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
+    ///**
+    // * Search for states... use $timeout to simulate
+    // * remote dataservice call.
+    // */
     function querySearch(query) {
         var results = orderSearchService.postAutoComplete(query).then(function (response) {
             return response.data;
         });
 
         if (self.simulateQuery) {
-            var results = orderSearchService.postData(query).then(function (response) {
+            results = orderSearchService.postData(query).then(function (response) {
                 return response.data;
             });
             //return deferred.resolve(response.data);
@@ -197,16 +197,15 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     function selectedItemChange(item) {
         //$log.getInstance('app').info('Hello World');
         //$scope.custID = null;
-        if (item.custID != NaN)
-        {
+        if (!isNAN(item.custID)) {
             $scope.custID = item.CustID;
         }
         $log.info('Item changed to ' + JSON.stringify(item));
     }
 
-    /**
-     * Build `states` list of key/value pairs
-     */
+    ///**
+    // * Build `states` list of key/value pairs
+    // */
     //function loadAll() {
     //    var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
     //          Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
@@ -224,9 +223,9 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     //    });
     //}
 
-    /**
-     * Create filter function for a query string
-     */
+    ///**
+    // * Create filter function for a query string
+    // */
     function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
 
