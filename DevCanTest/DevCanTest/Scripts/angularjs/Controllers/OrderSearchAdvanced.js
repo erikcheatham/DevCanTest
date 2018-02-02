@@ -129,6 +129,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
 
     $(function () {
         $("#datepickerShip").datepicker({
+            defaultDate: '06/07/2011',
             onSelect: function () {
                 $scope.shipDate = $(this).datepicker('getDate');
             }
@@ -137,6 +138,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
 
     $(function () {
         $("#datepickerOrder").datepicker({
+            defaultDate: '05/31/2011',
             onSelect: function () {
                 $scope.orderDate = $(this).datepicker('getDate');
             }
@@ -145,6 +147,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
 
     $(function () {
         $("#datepickerDue").datepicker({
+            defaultDate: '06/12/2011',
             onSelect: function () {
                 $scope.dueDate = $(this).datepicker('getDate');
             }

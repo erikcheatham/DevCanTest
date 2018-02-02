@@ -153,11 +153,20 @@ namespace DevCanTest.Models
                 //command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = 29825;
 
                 if (!string.IsNullOrEmpty(osr.orderDate))
-                    command.Parameters.AddWithValue("@OrderDate", SqlDbType.Date).Value = osr.orderDate;
+                {
+                    DateTime od = DateTime.Parse(osr.orderDate);
+                    command.Parameters.AddWithValue("@OrderDate", SqlDbType.DateTime).Value = od;
+                }
                 if (!string.IsNullOrEmpty(osr.dueDate))
-                    command.Parameters.AddWithValue("@DueDate", SqlDbType.Date).Value = osr.dueDate;
+                {
+                    DateTime dd = DateTime.Parse(osr.dueDate);
+                    command.Parameters.AddWithValue("@DueDate", SqlDbType.DateTime).Value = dd;
+                }
                 if (!string.IsNullOrEmpty(osr.shipDate))
-                    command.Parameters.AddWithValue("@ShipDate", SqlDbType.Date).Value = osr.shipDate;
+                {
+                    DateTime sd = DateTime.Parse(osr.shipDate);
+                    command.Parameters.AddWithValue("@ShipDate", SqlDbType.DateTime).Value = sd;
+                }
                 if (!string.IsNullOrEmpty(osr.custID))
                     command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = osr.custID;
 
