@@ -78,26 +78,15 @@ namespace DevCanTest.Controllers
 
         // GET: api/SalesOrderSearch
         [HttpPost]
-        public async Task<IHttpActionResult> OrderSearch([FromBody]object request)
+        public HttpResponseMessage OrderSearch(OrderSearchRequest request)
         {
-            string _apiUrl = String.Format("...");
-            string _baseAddress = "...";
+            OrderSearches os = new OrderSearches();
+            
+            string json = os.GetOrderSearches(request);
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(_baseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var responseMessage = await client.GetAsync(_apiUrl);
-
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var response = Request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = responseMessage.Content;
-                    return ResponseMessage(response);
-                }
-            }
-            return NotFound();
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            return response;
         }
     }
 }

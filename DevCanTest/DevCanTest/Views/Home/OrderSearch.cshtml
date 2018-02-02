@@ -24,8 +24,8 @@
                             <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.CustomerName}}</span>
                         </md-item-template>
                         <md-not-found>
-                            No states matching "{{ctrl.searchText}}" were found.
-                            <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                            No customer names matching "{{ctrl.searchText}}" were found.
+                            @*<a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>*@
                         </md-not-found>
                     </md-autocomplete>
                     <br />
@@ -47,9 +47,10 @@
     </div>
     <div class="btn-toolbar" />
     <div>
-        <button class="btn-group-lg btn-block" ng-click="callAPI()">Fire API Call</button>
+        @*<button class="btn-group-lg btn-block" ng-click="callAPI()">Fire API Call</button>*@
+        <button class="btn-group-lg btn-block" ng-click="callAPIPost()">Fire API Call</button>
         <br />
     </div>
     @*<p class="text-center">{{MyAPIReturn}}</p>*@
-    <div id="grid1" ui-grid="{ data: myData }"></div>
+    <div id="grid1" ui-grid="gridOptions" class="grid"></div>
 </div>

@@ -141,5 +141,38 @@ namespace DevCanTest.Models
             else
                 return "";
         }
+
+        public string GetOrderSearches(OrderSearchRequest osr)
+        {
+            using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["AdventureConnectionString"].ConnectionString))
+            {
+                myConnection.Open();
+                SqlCommand command = new SqlCommand("dbo.getOrderSearchbyDatesOrCustName", myConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                //Test Command
+                //command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = 29825;
+
+                if (!string.IsNullOrEmpty(osr.orderDate))
+                    command.Parameters.AddWithValue("@OrderDate", SqlDbType.Date).Value = osr.orderDate;
+                if (!string.IsNullOrEmpty(osr.dueDate))
+                    command.Parameters.AddWithValue("@DueDate", SqlDbType.Date).Value = osr.dueDate;
+                if (!string.IsNullOrEmpty(osr.shipDate))
+                    command.Parameters.AddWithValue("@ShipDate", SqlDbType.Date).Value = osr.shipDate;
+                if (!string.IsNullOrEmpty(osr.custID))
+                    command.Parameters.AddWithValue("@CustID", SqlDbType.Int).Value = osr.custID;
+
+                DataTable dataTable = new DataTable();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    //All That Work Above & This Is What It Was!!!!
+                    dataTable.Load(reader);
+                }
+                myConnection.Close();
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dataTable);
+                return JSONString;
+            }
+        }
     }
 }

@@ -159,6 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DataReader.cs" />
+    <Compile Include="Models\OrderSearchRequest.cs" />
     <Compile Include="Models\AutoComplete.cs" />
     <Compile Include="Models\OrderSearches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

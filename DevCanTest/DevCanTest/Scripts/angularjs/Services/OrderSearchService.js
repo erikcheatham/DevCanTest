@@ -30,11 +30,20 @@ var orderSearchService = function ($http) {
         });
     }
 
-    this.postData = function (text) {
+    this.postAutoComplete = function (text) {
         return $http({
             method: "POST",
             url: "http://localhost:64648/api/OrderSearchAutoComplete",
             data: { 'request': text }
+            //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}        
+        });
+    }
+
+    this.postData = function (orderDate, dueDate, shipDate, custID) {
+        return $http({
+            method: "POST",
+            url: "http://localhost:64648/api/SalesOrderSearch",
+            data: { 'orderDate': orderDate, 'dueDate': dueDate, 'shipDate': shipDate, 'custID': custID, }
             //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}        
         });
     }
