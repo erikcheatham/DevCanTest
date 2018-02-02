@@ -31,7 +31,6 @@ var orderSearchService = function ($http) {
     }
 
     this.postData = function (text) {
-        // $http() returns a $promise that we can add handlers with .then()
         return $http({
             method: "POST",
             url: "http://localhost:64648/api/OrderSearchAutoComplete",

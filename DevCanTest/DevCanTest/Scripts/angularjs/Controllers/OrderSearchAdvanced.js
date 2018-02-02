@@ -68,6 +68,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
 
     $scope.MyAPIReturn = null;
     $scope.results = [];
+    $scope.CustID = null;
 
     function newState(state) {
         alert("Sorry! You'll need to create a Constitution for " + state + " first!");
@@ -82,12 +83,14 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
      * remote dataservice call.
      */
     function querySearch(query) {
-        var results = query ? self.states.filter(createFilterFor(query)) : self.states,
-            deferred;
+        var results = orderSearchService.postData(query).then(function (response) {
+            return response.data;
+        });
         if (self.simulateQuery) {
-            deferred = $q.defer();
-            $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-            return deferred.promise;
+                orderSearchService.postData(query).then(function (response) {
+                    return results = response.data;
+                });
+            //return deferred.resolve(response.data);
         } else {
             return results;
         }
@@ -100,6 +103,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     function selectedItemChange(item) {
         //$log.getInstance('app').info('Hello World');
         $log.info('Item changed to ' + JSON.stringify(item));
+        $scope.CustID = item.CustID;
     }
 
     /**
