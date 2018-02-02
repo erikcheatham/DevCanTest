@@ -213,7 +213,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-logger.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-sprintf.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angularjs\Controllers\OrderSearchAdvanced.js" />
@@ -238,9 +240,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\angularjs\Services\OrderSearchService.js" />
+    <Content Include="Scripts\sprintf.min.js" />
     <Content Include="Scripts\ui-grid\ui-grid.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

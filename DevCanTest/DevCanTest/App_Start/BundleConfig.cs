@@ -11,6 +11,10 @@ namespace DevCanTest
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         //"~/Scripts/angular.js"));
                         "~/Scripts/angular.min.js").Include(
+                        "~/Scripts/angular-logger.min.js").Include(
+                        "~/Scripts/moment.min.js").Include(
+                        "~/Scripts/angular-sprintf.min.js").Include(
+                        //"~/Scripts/sprintf.min.js").Include(
                         "~/Scripts/ui-grid/ui-grid.min.js")
                         //.Include(
                         //"~/Scripts/Controllers/AngularTest.js").Include(
