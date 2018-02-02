@@ -10,7 +10,8 @@ namespace DevCanTest
         {
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         //"~/Scripts/angular.js"));
-                        "~/Scripts/angular.min.js")
+                        "~/Scripts/angular.min.js").Include(
+                        "~/Scripts/ui-grid/ui-grid.min.js")
                         //.Include(
                         //"~/Scripts/Controllers/AngularTest.js").Include(
                         //"~/Scripts/DevCanTest.js")
@@ -37,7 +38,8 @@ namespace DevCanTest
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/ui-grid.css"));
         }
     }
 }

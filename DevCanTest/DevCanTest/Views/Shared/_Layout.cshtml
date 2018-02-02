@@ -8,6 +8,10 @@
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     @Scripts.Render("~/bundles/modernizr")
+    @*<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>*@
+    @Scripts.Render("~/bundles/angular")
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
 </head>
 <body class="marble" ng-app="DevCanTest" ng-controller="AngularTest">
     <div class="navbar cornflowerBlue navbar-fixed-top">
@@ -44,8 +48,6 @@
             <p>&copy; @DateTime.Now.Year - My AngularJS & WebAPI App</p>
         </footer>
     </div>
-    @*<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>*@
-    @Scripts.Render("~/bundles/angular")
     @* Testing Angular Without Restart *@
     <script src="~/Scripts/angularjs/Controllers/AngularTest.js"></script>
     <script src="~/Scripts/angularjs/Controllers/OrderSearch.js"></script>

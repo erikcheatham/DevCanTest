@@ -9,3 +9,5 @@
 
 # Microsoft Azure ApplicationInsights config file
 ApplicationInsights.config
+/DevCanTest/node_modules/ag-grid
+/DevCanTest/node_modules

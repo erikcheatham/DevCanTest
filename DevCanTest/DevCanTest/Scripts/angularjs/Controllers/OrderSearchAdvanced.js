@@ -27,20 +27,34 @@ var OrderSearchAdvanced = function ($scope, orderSearchService) {
         //$scope.
     }
 
+
+    $scope.myData = [
+        {
+            firstName: "Cox",
+            lastName: "Carney",
+            company: "Enormo",
+            employed: true
+        },
+        {
+            firstName: "Lorraine",
+            lastName: "Wise",
+            company: "Comveyer",
+            employed: false
+        },
+        {
+            firstName: "Nancy",
+            lastName: "Waters",
+            company: "Fuelton",
+            employed: false
+        }
+    ];
+
+
     $(function () { $("#datepickerShip").datepicker(); });
     $(function () { $("#datepickerOrder").datepicker(); });
     $(function () { $("#datepickerDue").datepicker(); });
+
+
 }
-
 OrderSearchAdvanced.$inject = ['$scope', 'orderSearchService'];
-
-
-//var OrderSearch = function ($scope, orderSearchService) {
-//    $scope.MyAPIReturn = null;
-//    //callAPI()
-//    orderSearchService.getData().then(function (dataResponse) {
-//        $scope.MyAPIReturn = dataResponse;
-//    });
-//}
-//OrderSearch.$inject = ['$scope'];
 

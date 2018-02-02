@@ -34,3 +34,13 @@ textarea {
     border: 0px solid rgb(0, 0, 0);
     background-image: url(http://api.thumbr.it/whitenoise-361x370.png?background=4ea6caff&noise=FBECBA&density=89&opacity=72);
 }
+
+.grid {
+    width: 500px;
+    height: 250px;
+}
+
+.mytextarea {
+    max-width: 100%;
+    margin-top: 5%;
+}

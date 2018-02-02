@@ -1,6 +1,9 @@
-﻿var DevCanTest = angular.module('DevCanTest', []);
+﻿
+var DevCanTest = angular.module('DevCanTest', ['ngTouch','ui.grid']);
 DevCanTest.controller('AngularTest', AngularTest);
 DevCanTest.controller('OrderSearch', OrderSearch);
 DevCanTest.controller('OrderSearchAdvanced', OrderSearchAdvanced);
 DevCanTest.service('orderSearchService', orderSearchService);
+//agGrid.initialiseAgGridWithAngular1(angular);
+//DevCanTest.module('gridModule', gridModule);
 //DevCanTest.service('orderSearchAutocomplete', orderSearchAutocomplete);
