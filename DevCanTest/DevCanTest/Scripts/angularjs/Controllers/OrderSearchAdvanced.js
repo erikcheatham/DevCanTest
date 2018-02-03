@@ -9,7 +9,6 @@
 var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchService) {
     $scope.MyAPIReturn = null;
     $scope.results = [];
-    $scope.custID = null;
     $scope.shipDate = null;
     $scope.orderDate = null;
     $scope.dueDate = null;
@@ -75,13 +74,15 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
 
         //$scope.gridOptions.data = dataTest;
         //$scope.gridApi.grid.refresh();
-
-        orderSearchService.postData($scope.orderDate, $scope.dueDate, $scope.shipDate, $scope.custID).then(function (response) {
-            $timeout(function () {
-                $scope.gridOptions.data = response.data;
-                $scope.gridApi.grid.refresh();
-            }, 500);
-        });
+        if ($scope.orderDate != undefined || $scope.dueDate != undefined || $scope.shipDate != undefined || $scope.custID != undefined) {
+            $log.info($scope.custID);
+            orderSearchService.postData($scope.orderDate, $scope.dueDate, $scope.shipDate, $scope.custID).then(function (response) {
+                $timeout(function () {
+                    $scope.gridOptions.data = response.data;
+                    $scope.gridApi.grid.refresh();
+                }, 500);
+            });
+        }
 
         //alert("Rebinding");
 
@@ -155,16 +156,17 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
     });
 
     //MAterial Design AutoComplete Code
-    var self = this;
-    self.simulateQuery = false;
-    self.isDisabled = false;
+    //var self = this;
+    $scope.simulateQuery = false;
+    $scope.isDisabled = false;
 
     // list of `state` value/display objects
     //self.states = loadAll();
-    self.querySearch = querySearch;
-    self.selectedItemChange = selectedItemChange;
-    self.searchTextChange = searchTextChange;
-    self.newState = newState;
+    $scope.querySearch = querySearch;
+    $scope.selectedItemChange = selectedItemChange;
+    $scope.searchTextChange = searchTextChange;
+    $scope.newState = newState;
+    $scope.custID = null;
 
     function newState(state) {
         alert("Sorry! You'll need to create a Constitution for " + state + " first!");
@@ -204,6 +206,7 @@ var OrderSearchAdvanced = function ($scope, $timeout, $q, $log, orderSearchServi
             $scope.custID = item.CustID;
         }
         $log.info('Item changed to ' + JSON.stringify(item));
+        //return item.CustID;
     }
 
     ///**
